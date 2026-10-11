@@ -3,522 +3,272 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Klass Konekte | Apprenons ensemble</title>
+  <title>Klass Konekte | Espace élèves</title>
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f3f6fc;
-      color: #243247;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5fb;
+      color: #172b4d;
+    }
+
+    header {
+      background: #123b78;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header span {
+      color: #7de3d1;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #123b78, #1766a8);
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      margin-top: 0;
+    }
+
+    .hero p {
       line-height: 1.6;
     }
-    header {
-      background: white;
-      padding: 18px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      box-shadow: 0 2px 10px #142b4a12;
+
+    .container {
+      width: min(92%, 520px);
+      margin: 30px auto;
     }
-    .logo { font-size: 23px; font-weight: bold; color: #142b4a; }
-    .logo span { color: #00a5b5; }
-    button, .btn {
-      border: 0;
-      border-radius: 8px;
-      padding: 11px 16px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      font-family: inherit;
-    }
-    .primary { background: #00a5b5; color: white; }
-    .outline { background: white; color: #00a5b5; border: 1px solid #00a5b5; }
-    .hero {
-      text-align: center;
-      padding: 75px 20px;
-      background: linear-gradient(135deg, #e0f7fa, #f8fbff);
-    }
-    .tag {
-      display: inline-block;
-      background: #d0f0f3;
-      color: #007a87;
-      padding: 6px 13px;
-      border-radius: 25px;
-      margin-bottom: 18px;
-      font-size: 13px;
-    }
-    h1 { font-size: clamp(34px, 6vw, 52px); color: #142b4a; line-height: 1.2; }
-    .hero p { max-width: 650px; margin: 20px auto; color: #53647b; font-size: 18px; }
-    .actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-    section { padding: 50px 6%; }
-    h2 { text-align: center; color: #142b4a; margin-bottom: 12px; font-size: 29px; }
-    .description { text-align: center; max-width: 650px; margin: 0 auto 30px; color: #64748b; }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+
     .card {
       background: white;
-      border: 1px solid #e5eaf3;
-      border-radius: 14px;
-      padding: 24px;
-    }
-    .card .icon { font-size: 30px; }
-    .card h3 { color: #142b4a; margin: 10px 0; }
-    .card p { color: #64748b; }
-    .community { background: white; text-align: center; }
-    .community-box {
-      max-width: 750px;
-      margin: auto;
       padding: 25px;
-      border-radius: 14px;
-      background: #f3f6fc;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px #142c4b12;
+      margin-bottom: 25px;
     }
-    .community-box p { margin: 12px 0; }
-    .reward { background: #effcf3; }
-    footer { background: #142b4a; color: white; text-align: center; padding: 30px 15px; }
-    footer p { margin-top: 8px; color: #d6e0ef; }
-    #userInfo {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: #142b4a;
-      margin-left: 8px;
-      flex-wrap: wrap;
+
+    h2 {
+      color: #123b78;
     }
-    .auth-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #d4f5f8, #f3f6fc);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      overflow-y: auto;
-    }
-    .auth-modal.open { display: flex; }
-    .auth-container {
-      background: white;
-      width: 100%;
-      max-width: 900px;
-      min-height: 500px;
-      border-radius: 24px;
-      box-shadow: 0 25px 70px rgba(0, 122, 135, 0.2);
-      display: flex;
-      overflow: hidden;
-      position: relative;
-    }
-    .auth-panel {
-      width: 45%;
-      background: linear-gradient(135deg, #00c9d4, #007a87);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 30px;
-      text-align: center;
-      border-radius: 0 60% 60% 0 / 0 50% 50% 0;
-      position: relative;
-      z-index: 2;
-    }
-    .auth-panel h2 { color: white; font-size: 32px; margin-bottom: 10px; text-align: center; }
-    .auth-panel p { font-size: 14px; opacity: 0.9; margin-bottom: 22px; }
-    .auth-panel button {
-      background: transparent;
-      color: white;
-      border: 2px solid white;
-      padding: 11px 32px;
-      border-radius: 30px;
-      font-weight: bold;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .auth-panel button:hover { background: white; color: #007a87; }
-    .auth-form-box { flex: 1; padding: 50px 45px; display: flex; flex-direction: column; justify-content: center; }
-    .auth-form-box h2 { text-align: center; color: #142b4a; font-size: 30px; margin-bottom: 30px; }
-    .input-group { position: relative; margin-bottom: 18px; }
-    .input-group input {
-      width: 100%;
-      padding: 14px 45px 14px 18px;
-      border: 1px solid #e0e6ef;
-      background: #f7f9fc;
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-    .input-group input:focus { outline: none; border-color: #00a5b5; background: white; }
-    .input-group .input-icon {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 17px;
-      color: #94a3b8;
-      pointer-events: none;
-    }
-    .forgot-link {
+
+    label {
       display: block;
-      text-align: right;
-      color: #64748b;
-      font-size: 13px;
-      margin-bottom: 18px;
-      cursor: pointer;
+      margin-top: 15px;
+      font-weight: bold;
     }
-    .forgot-link:hover { color: #00a5b5; }
-    .auth-error { color: #dc2626; font-size: 14px; margin: 0 0 12px; min-height: 18px; text-align: center; }
-    .auth-success { color: #16a34a; font-size: 14px; margin: 0 0 12px; min-height: 18px; text-align: center; }
-    .submit-btn {
-      background: linear-gradient(135deg, #00c9d4, #007a87);
-      color: white;
+
+    input, select {
       width: 100%;
+      padding: 12px;
+      margin-top: 7px;
+      border: 1px solid #ccd5e3;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
       padding: 14px;
-      border-radius: 30px;
+      border: none;
+      border-radius: 8px;
+      background: #123b78;
+      color: white;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      border: 0;
-      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0, 165, 181, 0.3); }
-    .social-divider { text-align: center; color: #94a3b8; font-size: 13px; margin: 22px 0 16px; }
-    .social-buttons { display: flex; justify-content: center; gap: 12px; }
-    .social-buttons button {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      border: 1px solid #e0e6ef;
-      background: white;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #142b4a;
-      transition: all 0.2s;
+
+    button:hover {
+      background: #1766a8;
     }
-    .social-buttons button:hover { border-color: #00a5b5; color: #00a5b5; transform: translateY(-1px); }
-    .close-btn {
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      font-size: 28px;
-      cursor: pointer;
-      color: #64748b;
-      line-height: 1;
-      z-index: 10;
-      background: transparent;
-      border: 0;
-      padding: 4px 8px;
-      border-radius: 50%;
-      transition: background 0.2s;
+
+    .secondary {
+      background: #e5f7f3;
+      color: #123b78;
     }
-    .close-btn:hover { color: #142b4a; background: #f3f6fc; }
-    .profile-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: #142b4a99;
-      z-index: 10000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .profile-modal.open { display: flex; }
-    .profile-box {
-      background: white;
-      border-radius: 14px;
-      padding: 28px;
-      max-width: 400px;
-      width: 100%;
-      position: relative;
-      box-shadow: 0 20px 60px #142b4a40;
-    }
-    .profile-box h2 { text-align: left; margin-bottom: 16px; color: #142b4a; font-size: 22px; }
-    .profile-box input {
-      width: 100%;
+
+    .message {
       padding: 12px;
-      margin-bottom: 10px;
-      border: 1px solid #d6dfec;
       border-radius: 8px;
-      font-size: 15px;
-      font-family: inherit;
+      margin-top: 15px;
+      overflow-wrap: anywhere;
     }
-    .profile-box input:focus { outline: none; border-color: #00a5b5; }
-    .profile-box button.primary { width: 100%; }
-    .profile-close {
-      position: absolute;
-      top: 10px;
-      right: 16px;
-      font-size: 26px;
-      cursor: pointer;
-      color: #64748b;
-      line-height: 1;
+
+    .hidden {
+      display: none;
     }
-    .discussion { background: #f8fafc; }
-    .discussion-container { max-width: 800px; margin: auto; }
-    .new-post-box {
-      background: white;
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 4px 20px #142b4a0d;
-      margin-bottom: 30px;
-      border: 1px solid #e5eaf3;
-    }
-    .new-post-box h3 { color: #142b4a; margin-bottom: 14px; font-size: 18px; }
-    .new-post-box input,
-    .new-post-box textarea {
-      width: 100%;
-      padding: 12px 14px;
-      margin-bottom: 12px;
-      border: 1px solid #d6dfec;
-      border-radius: 10px;
-      font-size: 15px;
-      font-family: inherit;
-      background: #f7f9fc;
-      transition: all 0.2s;
-    }
-    .new-post-box input:focus,
-    .new-post-box textarea:focus { outline: none; border-color: #00a5b5; background: white; }
-    .new-post-box textarea { min-height: 90px; resize: vertical; }
-    .post-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-    .post-error { color: #dc2626; font-size: 14px; min-height: 18px; }
-    .login-notice {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 30px;
-      text-align: center;
-      color: #9a3412;
-    }
-    .login-notice button { margin-top: 12px; }
-    .posts-list { display: flex; flex-direction: column; gap: 16px; }
-    .post-card {
-      background: white;
-      border: 1px solid #e5eaf3;
-      border-radius: 14px;
-      padding: 22px;
-      transition: box-shadow 0.2s;
-    }
-    .post-card:hover { box-shadow: 0 6px 24px #142b4a10; }
-    .post-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
-    .post-author { display: flex; align-items: center; gap: 10px; }
-    .avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #00c9d4, #007a87);
+
+    footer {
+      background: #102c54;
       color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-    .author-info { display: flex; flex-direction: column; }
-    .author-name { font-weight: bold; color: #142b4a; font-size: 15px; }
-    .author-meta { font-size: 12px; color: #94a3b8; }
-    .post-date { font-size: 12px; color: #94a3b8; }
-    .post-title { color: #142b4a; font-size: 18px; margin-bottom: 8px; font-weight: bold; }
-    .post-content { color: #475569; font-size: 15px; margin-bottom: 14px; white-space: pre-wrap; word-wrap: break-word; }
-    .post-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 12px; gap: 10px; flex-wrap: wrap; }
-    .post-owner-actions { display: flex; gap: 8px; }
-    .post-owner-actions button {
-      padding: 6px 12px;
-      font-size: 13px;
-      border-radius: 6px;
-      background: #fef2f2;
-      color: #dc2626;
-      border: 1px solid #fecaca;
-      cursor: pointer;
-    }
-    .post-owner-actions button:hover { background: #fee2e2; }
-    .empty-state {
       text-align: center;
-      padding: 50px 20px;
-      color: #94a3b8;
-      background: white;
-      border-radius: 14px;
-      border: 1px dashed #cbd5e1;
-    }
-    .empty-state .icon { font-size: 40px; margin-bottom: 10px; }
-    @media (max-width: 700px) {
-      .auth-container { flex-direction: column; min-height: auto; }
-      .auth-panel { width: 100%; border-radius: 0 0 40% 40% / 0 0 20% 20%; padding: 30px 20px; }
-      .auth-panel h2 { font-size: 24px; }
-      .auth-form-box { padding: 35px 25px; }
-      .auth-form-box h2 { font-size: 24px; margin-bottom: 22px; }
-    }
-    @media (max-width: 500px) {
-      header { justify-content: center; }
-      .hero { padding: 50px 18px; }
-      section { padding: 40px 5%; }
-      .post-header { flex-direction: column; }
+      padding: 20px;
+      margin-top: 40px;
     }
   </style>
 </head>
+
 <body>
   <header>
-    <div class="logo">Klass <span>Konekte</span></div>
-    <div>
-      <button class="outline" onclick="showMessage('Inscription')">S'inscrire</button>
-      <button class="primary" onclick="showMessage('Connexion')">Se connecter</button>
-    </div>
+    <h1>🎓 Klass <span>Konekte</span></h1>
+    <p>Aprann ansanm, reyisi ansanm!</p>
   </header>
 
-  <main>
-    <section class="hero">
-      <span class="tag">La communauté éducative haïtienne</span>
-      <h1>Apprenons ensemble, réussissons ensemble.</h1>
-      <p>Pose tes questions, partage tes connaissances et aide les autres élèves à comprendre leurs cours.</p>
-      <div class="actions">
-        <button class="primary" onclick="showMessage('Inscription')">Rejoindre la communauté</button>
-        <a href="#discussions" class="btn outline">Voir les discussions</a>
-      </div>
+  <section class="hero">
+    <h2>Bienvenue sur Klass Konekte!</h2>
+    <p>
+      Crée ton compte, choisis ta classe et rejoins
+      une communauté d'élèves qui apprennent ensemble.
+    </p>
+    <p>
+      Kreye kont ou, chwazi klas ou epi aprann ak lòt elèv!
+    </p>
+  </section>
+
+  <main class="container">
+
+    <section class="card" id="registerCard">
+      <h2>📝 Enskripsyon / Inscription</h2>
+
+      <form id="registerForm">
+        <label for="fullName">Non konplè / Nom complet</label>
+        <input id="fullName" type="text" maxlength="100"
+               autocomplete="name" required>
+
+        <label for="username">Non itilizatè / Nom d'utilisateur</label>
+        <input id="username" type="text" minlength="3"
+               maxlength="20" pattern="[A-Za-z0-9_]+"
+               autocomplete="username" required>
+        <small>Itilize lèt, chif ak siy _ sèlman.</small>
+
+        <label for="email">Adrès imèl / Adresse e-mail</label>
+        <input id="email" type="email" autocomplete="email" required>
+
+        <label for="country">Peyi / Pays</label>
+        <select id="country" required>
+          <option value="">Chwazi peyi ou / Choisir un pays</option>
+          <option value="Haïti">Haïti</option>
+          <option value="République dominicaine">République dominicaine</option>
+          <option value="France">France</option>
+          <option value="Canada">Canada</option>
+          <option value="États-Unis">États-Unis</option>
+          <option value="Autre">Autre pays</option>
+        </select>
+
+        <label for="schoolClass">Klas ou / Ta classe</label>
+        <select id="schoolClass" required>
+          <option value="">Chwazi klas ou / Choisir ta classe</option>
+          <option value="7AF">7yèm AF</option>
+          <option value="8AF">8yèm AF</option>
+          <option value="9AF">9yèm AF</option>
+          <option value="NS1">NS1</option>
+          <option value="NS2">NS2</option>
+          <option value="NS3">NS3</option>
+          <option value="NS4">NS4</option>
+        </select>
+
+        <label for="password">Modpas / Mot de passe</label>
+        <input id="password" type="password" minlength="6"
+               autocomplete="new-password" required>
+
+        <small>Chwazi yon modpas ki gen omwen 6 karaktè.</small>
+
+        <button type="submit" id="registerButton">
+          Kreye kont mwen / Créer mon compte
+        </button>
+
+        <div id="registerMessage" class="message hidden"
+             role="status" aria-live="polite"></div>
+      </form>
+
+      <button type="button" class="secondary" id="showLogin">
+        Mwen deja gen kont / J'ai déjà un compte
+      </button>
     </section>
 
-    <section id="fonctionnalites">
-      <h2>Apprendre ensemble</h2>
-      <p class="description">Un espace pour poser des questions, partager des cours et s'entraider.</p>
-      <div class="features">
-        <article class="card">
-          <div class="icon">📚</div>
-          <h3>Cours et devoirs</h3>
-          <p>Partage tes notes et demande de l'aide pour tes exercices.</p>
-        </article>
-        <article class="card">
-          <div class="icon">💬</div>
-          <h3>Discussions</h3>
-          <p>Échange avec les élèves de ta classe et d'autres établissements.</p>
-        </article>
-        <article class="card">
-          <div class="icon">🤝</div>
-          <h3>Entraide</h3>
-          <p>Explique ce que tu comprends et aide tes camarades à progresser.</p>
-        </article>
-        <article class="card">
-          <div class="icon">🏆</div>
-          <h3>Récompenses</h3>
-          <p>Cinq élèves pourront être récompensés chaque semaine dans chaque classe.</p>
-        </article>
-      </div>
+    <section class="card hidden" id="loginCard">
+      <h2>🔐 Konekte / Connexion</h2>
+
+      <form id="loginForm">
+        <label for="loginEmail">Adrès imèl / Adresse e-mail</label>
+        <input id="loginEmail" type="email"
+               autocomplete="email" required>
+
+        <label for="loginPassword">Modpas / Mot de passe</label>
+        <input id="loginPassword" type="password"
+               autocomplete="current-password" required>
+
+        <button type="submit" id="loginButton">
+          Konekte / Se connecter
+        </button>
+
+        <div id="loginMessage" class="message hidden"
+             role="status" aria-live="polite"></div>
+      </form>
+
+      <button type="button" class="secondary" id="showRegister">
+        Retounen nan enskripsyon
+      </button>
     </section>
 
-    <section class="discussion" id="discussions">
-      <h2>💬 Discussions</h2>
-      <p class="description">Pose tes questions, partage tes connaissances et aide les autres élèves.</p>
-      <div class="discussion-container">
-        <div class="new-post-box" id="newPostBox" style="display:none;">
-          <h3>✍️ Nouvelle publication</h3>
-          <input type="text" id="postTitle" placeholder="Titre de ta question ou publication" maxlength="120">
-          <textarea id="postContent" placeholder="Écris ton message ici... Explique bien ta question ou partage ton idée." maxlength="2000"></textarea>
-          <div class="post-actions">
-            <span class="post-error" id="postError"></span>
-            <button class="primary" onclick="createPost()">Publier</button>
-          </div>
-        </div>
-        <div class="login-notice" id="loginNotice">
-          <strong>Connecte-toi pour participer aux discussions</strong>
-          <p>Rejoins la communauté pour poser tes questions et aider les autres.</p>
-          <button class="primary" onclick="showMessage('Connexion')">Se connecter</button>
-        </div>
-        <div class="posts-list" id="postsList">
-          <div class="empty-state">
-            <div class="icon">💭</div>
-            <p>Chargement des discussions...</p>
-          </div>
-        </div>
-      </div>
+    <section class="card hidden" id="profileCard">
+      <h2>🎓 Kont mwen / Mon compte</h2>
+      <p id="welcomeMessage"></p>
+      <p id="profileDetails"></p>
+
+      <button type="button" id="logoutButton">
+        Dekonekte / Se déconnecter
+      </button>
     </section>
 
-    <section class="community">
-      <h2>La communauté se prépare !</h2>
-      <p class="description">Nous construisons un espace pour que les élèves apprennent et s'aident.</p>
-      <div class="community-box">
-        <h3>Bientôt disponible</h3>
-        <p>Les classements et les récompenses seront activés dans les prochaines étapes.</p>
-      </div>
-    </section>
-
-    <section class="reward">
-      <h2>Chaque classe compte</h2>
-      <p class="description">Les classements seront séparés par classe et valoriseront les réponses utiles.</p>
-    </section>
   </main>
 
   <footer>
-    <div class="logo" style="color:white">Klass <span>Konekte</span></div>
-    <p>Aprann ansanm, grandi ansanm.</p>
-    <p>© <span id="year"></span> Klass Konekte</p>
+    <p>© 2026 Klass Konekte</p>
+    <p>Aprann ansanm, reyisi ansanm.</p>
   </footer>
 
-  <div class="auth-modal" id="authModal">
-    <div class="auth-container">
-      <button class="close-btn" onclick="closeAuth()">×</button>
-      <div class="auth-panel">
-        <h2 id="panelTitle">Bonjour,<br>Bienvenue</h2>
-        <p id="panelText">Vous n'avez pas de compte ?</p>
-        <button onclick="switchAuth()" id="panelBtn">S'inscrire</button>
-      </div>
-      <div class="auth-form-box">
-        <h2 id="authTitle">Se connecter</h2>
-        <form onsubmit="event.preventDefault(); submitAuth();">
-          <div class="input-group">
-            <input type="email" id="authEmail" placeholder="Email" autocomplete="email">
-            <span class="input-icon">✉</span>
-          </div>
-          <div class="input-group">
-            <input type="password" id="authPassword" placeholder="Mot de passe" autocomplete="current-password">
-            <span class="input-icon">🔒</span>
-          </div>
-        </form>
-        <span class="forgot-link" id="forgotLink" onclick="resetPassword()">Mot de passe oublié ?</span>
-        <p id="authError" class="auth-error"></p>
-        <button class="submit-btn" id="authSubmit" onclick="submitAuth()">Se connecter</button>
-        <p class="social-divider">ou connectez-vous avec</p>
-        <div class="social-buttons">
-          <button onclick="socialMsg('Google')">G</button>
-          <button onclick="socialMsg('Facebook')">f</button>
-          <button onclick="socialMsg('GitHub')">⌨</button>
-          <button onclick="socialMsg('LinkedIn')">in</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <script type="module">
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 
-  <div class="profile-modal" id="profileModal">
-    <div class="profile-box">
-      <span class="profile-close" onclick="closeProfile()">×</span>
-      <h2>Mon profil</h2>
-      <p style="color:#64748b; font-size:14px; margin-bottom:14px;">
-        Complète tes informations pour rejoindre ta classe.
-      </p>
-      <input type="text" id="profileName" placeholder="Nom complet">
-      <input type="text" id="profileClass" placeholder="Classe (ex: 9ème, Rhéto, Philo)">
-      <input type="text" id="profileSchool" placeholder="École">
-      <p id="profileError" style="color:#dc2626; font-size:14px; margin: 4px 0 12px; min-height:18px;"></p>
-      <button class="primary" onclick="saveProfile()">Enregistrer</button>
-    </div>
-  </div>
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut,
+      updateProfile
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script>
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyAvIWkk5fTSPtV_Y2_ZNDkNubvkZ-A6_pc",
       authDomain: "klass-konekte.firebaseapp.com",
+      databaseURL: "https://klass-konekte-default-rtdb.firebaseio.com",
       projectId: "klass-konekte",
       storageBucket: "klass-konekte.firebasestorage.app",
       messagingSenderId: "902584495528",
@@ -526,356 +276,163 @@
       measurementId: "G-BWW4KJT3NH"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    let authMode = "login";
-    let currentUserProfile = null;
-    let currentUser = null;
+    const $ = (id) => document.getElementById(id);
 
-    function showMessage(action) {
-      if (action === "Inscription") {
-        authMode = "signup";
-        openAuth();
-      } else if (action === "Connexion") {
-        authMode = "login";
-        openAuth();
-      } else {
-        alert(action + " sera disponible dans une prochaine version de Klass Konekte.");
-      }
+    function showMessage(id, text, success = false) {
+      const element = $(id);
+      element.textContent = text;
+      element.classList.remove("hidden");
+      element.style.background = success ? "#e5f7e9" : "#fff0f0";
+      element.style.color = success ? "#176b35" : "#a32222";
     }
 
-    function openAuth() {
-      updateAuthUI();
-      document.getElementById("authError").textContent = "";
-      document.getElementById("authError").className = "auth-error";
-      document.getElementById("authEmail").value = "";
-      document.getElementById("authPassword").value = "";
-      document.getElementById("authModal").classList.add("open");
-    }
-
-    function closeAuth() {
-      document.getElementById("authModal").classList.remove("open");
-    }
-
-    function switchAuth() {
-      authMode = authMode === "signup" ? "login" : "signup";
-      updateAuthUI();
-    }
-
-    function updateAuthUI() {
-      const isSignup = authMode === "signup";
-      document.getElementById("authTitle").textContent = isSignup ? "S'inscrire" : "Se connecter";
-      document.getElementById("authSubmit").textContent = isSignup ? "S'inscrire" : "Se connecter";
-      document.getElementById("panelTitle").innerHTML = isSignup ? "Bon retour !" : "Bonjour,<br>Bienvenue";
-      document.getElementById("panelText").textContent = isSignup ? "Vous avez déjà un compte ?" : "Vous n'avez pas de compte ?";
-      document.getElementById("panelBtn").textContent = isSignup ? "Se connecter" : "S'inscrire";
-      document.getElementById("forgotLink").style.display = isSignup ? "none" : "block";
-      document.getElementById("authPassword").setAttribute("autocomplete", isSignup ? "new-password" : "current-password");
-    }
-
-    function submitAuth() {
-      const email = document.getElementById("authEmail").value.trim();
-      const password = document.getElementById("authPassword").value;
-      const errorEl = document.getElementById("authError");
-      errorEl.textContent = "";
-      errorEl.className = "auth-error";
-
-      if (!email || !password) {
-        errorEl.textContent = "Entrez un email et un mot de passe.";
-        return;
-      }
-      if (password.length < 6) {
-        errorEl.textContent = "Le mot de passe doit faire au moins 6 caractères.";
-        return;
-      }
-
-      const promise = authMode === "signup"
-        ? auth.createUserWithEmailAndPassword(email, password)
-        : auth.signInWithEmailAndPassword(email, password);
-
-      promise
-        .then(() => { closeAuth(); })
-        .catch(err => { errorEl.textContent = translateError(err.code); });
-    }
-
-    async function resetPassword() {
-      const email = document.getElementById("authEmail").value.trim();
-      const errorEl = document.getElementById("authError");
-      errorEl.className = "auth-error";
-      errorEl.textContent = "";
-      if (!email) {
-        errorEl.textContent = "Entrez votre email d'abord, puis cliquez sur 'Mot de passe oublié'.";
-        return;
-      }
-      try {
-        await auth.sendPasswordResetEmail(email);
-        errorEl.className = "auth-success";
-        errorEl.textContent = "Email de réinitialisation envoyé ! Vérifiez votre boîte.";
-      } catch (err) {
-        errorEl.textContent = translateError(err.code);
-      }
-    }
-
-    function socialMsg(name) {
-      alert("La connexion avec " + name + " sera disponible bientôt.");
-    }
-
-    function translateError(code) {
-      const map = {
-        "auth/email-already-in-use": "Cet email est déjà utilisé.",
-        "auth/invalid-email": "L'email n'est pas valide.",
-        "auth/weak-password": "Mot de passe trop faible (min. 6 caractères).",
-        "auth/user-not-found": "Aucun compte avec cet email.",
-        "auth/wrong-password": "Mot de passe incorrect.",
-        "auth/invalid-credential": "Email ou mot de passe incorrect.",
-        "auth/too-many-requests": "Trop de tentatives. Réessayez plus tard.",
-        "auth/network-request-failed": "Problème de connexion internet.",
-        "auth/operation-not-allowed": "Méthode Email/Password non activée dans Firebase."
+    function friendlyError(error) {
+      const errors = {
+        "auth/email-already-in-use":
+          "Imèl sa a deja gen yon kont.",
+        "auth/invalid-email":
+          "Adrès imèl la pa valab.",
+        "auth/weak-password":
+          "Modpas la twò fèb. Itilize omwen 6 karaktè.",
+        "auth/invalid-credential":
+          "Imèl oswa modpas la pa kòrèk.",
+        "auth/network-request-failed":
+          "Pwoblèm koneksyon entènèt. Eseye ankò."
       };
-      return map[code] || "Une erreur est survenue. Réessayez.";
+
+      return errors[error.code] ||
+        "Yon erè rive. Tanpri verifye enfòmasyon yo epi eseye ankò.";
     }
 
-    async function openProfile() {
-      const user = auth.currentUser;
-      if (!user) return;
-      document.getElementById("profileError").textContent = "";
-      try {
-        const docSnap = await db.collection("users").doc(user.uid).get();
-        if (docSnap.exists) {
-          const p = docSnap.data();
-          document.getElementById("profileName").value = p.nom || "";
-          document.getElementById("profileClass").value = p.classe || "";
-          document.getElementById("profileSchool").value = p.ecole || "";
-        } else {
-          document.getElementById("profileName").value = "";
-          document.getElementById("profileClass").value = "";
-          document.getElementById("profileSchool").value = "";
-        }
-      } catch (err) {
-        console.error("Erreur lecture profil:", err);
-      }
-      document.getElementById("profileModal").classList.add("open");
-    }
+    $("showLogin").addEventListener("click", () => {
+      $("registerCard").classList.add("hidden");
+      $("loginCard").classList.remove("hidden");
+    });
 
-    function closeProfile() {
-      document.getElementById("profileModal").classList.remove("open");
-    }
+    $("showRegister").addEventListener("click", () => {
+      $("loginCard").classList.add("hidden");
+      $("registerCard").classList.remove("hidden");
+    });
 
-    async function saveProfile() {
-      const user = auth.currentUser;
-      if (!user) return;
-      const nom = document.getElementById("profileName").value.trim();
-      const classe = document.getElementById("profileClass").value.trim();
-      const ecole = document.getElementById("profileSchool").value.trim();
-      const errorEl = document.getElementById("profileError");
-      errorEl.textContent = "";
-      if (!nom || !classe || !ecole) {
-        errorEl.textContent = "Remplis tous les champs.";
-        return;
-      }
-      try {
-        await db.collection("users").doc(user.uid).set({
-          nom: nom,
-          classe: classe,
-          ecole: ecole,
-          email: user.email,
-          creeLe: firebase.firestore.FieldValue.serverTimestamp()
-        }, { merge: true });
-        closeProfile();
-        location.reload();
-      } catch (e) {
-        console.error("Erreur sauvegarde:", e);
-        errorEl.textContent = "Erreur: " + e.message;
-      }
-    }
+    $("registerForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-    function formatDate(timestamp) {
-      if (!timestamp) return "à l'instant";
-      const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-      const now = new Date();
-      const diff = Math.floor((now - date) / 1000);
-      if (diff < 60) return "à l'instant";
-      if (diff < 3600) return "il y a " + Math.floor(diff / 60) + " min";
-      if (diff < 86400) return "il y a " + Math.floor(diff / 3600) + " h";
-      if (diff < 604800) return "il y a " + Math.floor(diff / 86400) + " j";
-      return date.toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
-    }
+      const button = $("registerButton");
+      button.disabled = true;
+      button.textContent = "Ap kreye kont la...";
 
-    function escapeHtml(text) {
-      const div = document.createElement("div");
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    async function createPost() {
-      const user = auth.currentUser;
-      if (!user) return;
-      const title = document.getElementById("postTitle").value.trim();
-      const content = document.getElementById("postContent").value.trim();
-      const errorEl = document.getElementById("postError");
-      errorEl.textContent = "";
-
-      if (!title || !content) {
-        errorEl.textContent = "Remplis le titre et le message.";
-        return;
-      }
+      const fullName = $("fullName").value.trim();
+      const username = $("username").value.trim().toLowerCase();
+      const email = $("email").value.trim();
+      const country = $("country").value;
+      const schoolClass = $("schoolClass").value;
+      const password = $("password").value;
 
       try {
-        await db.collection("posts").add({
-          title: title,
-          content: content,
-          authorId: user.uid,
-          authorName: currentUserProfile?.nom || user.email,
-          authorClass: currentUserProfile?.classe || "",
-          authorSchool: currentUserProfile?.ecole || "",
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        const credential = await createUserWithEmailAndPassword(
+          auth, email, password
+        );
+
+        const uid = credential.user.uid;
+
+        await updateProfile(credential.user, {
+          displayName: fullName
         });
-        document.getElementById("postTitle").value = "";
-        document.getElementById("postContent").value = "";
-        loadPosts();
-      } catch (e) {
-        console.error("Erreur création post:", e);
-        errorEl.textContent = "Erreur: " + e.message;
+
+        await setDoc(doc(db, "users", uid), {
+          uid,
+          fullName,
+          username,
+          email,
+          country,
+          schoolClass,
+          createdAt: serverTimestamp()
+        });
+
+        $("registerForm").reset();
+
+        showMessage(
+          "registerMessage",
+          "Kont ou kreye avèk siksè! Byenveni sou Klass Konekte.",
+          true
+        );
+      } catch (error) {
+        console.error("Registration error:", error);
+        showMessage("registerMessage", friendlyError(error));
+      } finally {
+        button.disabled = false;
+        button.textContent = "Kreye kont mwen / Créer mon compte";
       }
-    }
+    });
 
-    async function deletePost(postId) {
-      if (!confirm("Veux-tu vraiment supprimer cette publication ?")) return;
+    $("loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const button = $("loginButton");
+      button.disabled = true;
+
       try {
-        await db.collection("posts").doc(postId).delete();
-        loadPosts();
-      } catch (e) {
-        alert("Erreur: " + e.message);
+        await signInWithEmailAndPassword(
+          auth,
+          $("loginEmail").value.trim(),
+          $("loginPassword").value
+        );
+
+        showMessage("loginMessage", "Ou konekte avèk siksè!", true);
+      } catch (error) {
+        console.error("Login error:", error);
+        showMessage("loginMessage", friendlyError(error));
+      } finally {
+        button.disabled = false;
       }
-    }
+    });
 
-    async function loadPosts() {
-      const listEl = document.getElementById("postsList");
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        $("profileCard").classList.add("hidden");
+        return;
+      }
+
       try {
-        const snapshot = await db.collection("posts").orderBy("createdAt", "desc").limit(50).get();
+        const profileRef = doc(db, "users", user.uid);
+        const profileSnap = await getDoc(profileRef);
 
-        if (snapshot.empty) {
-          listEl.innerHTML = `
-            <div class="empty-state">
-              <div class="icon">💭</div>
-              <p>Aucune discussion pour le moment.</p>
-              <p style="font-size:14px;margin-top:8px;">Sois le premier à poser une question !</p>
-            </div>`;
+        if (!profileSnap.exists()) {
+          $("profileCard").classList.add("hidden");
           return;
         }
 
-        let html = "";
-        snapshot.forEach(doc => {
-          const p = doc.data();
-          const isOwner = currentUser && p.authorId === currentUser.uid;
-          const initial = (p.authorName || "?").charAt(0).toUpperCase();
-          const meta = [p.authorClass, p.authorSchool].filter(Boolean).join(" • ");
+        const profile = profileSnap.data();
 
-          html += `
-            <article class="post-card">
-              <div class="post-header">
-                <div class="post-author">
-                  <div class="avatar">${escapeHtml(initial)}</div>
-                  <div class="author-info">
-                    <span class="author-name">${escapeHtml(p.authorName || "Anonyme")}</span>
-                    <span class="author-meta">${escapeHtml(meta)}</span>
-                  </div>
-                </div>
-                <span class="post-date">${formatDate(p.createdAt)}</span>
-              </div>
-              <h3 class="post-title">${escapeHtml(p.title)}</h3>
-              <p class="post-content">${escapeHtml(p.content)}</p>
-              ${isOwner ? `
-                <div class="post-footer">
-                  <div></div>
-                  <div class="post-owner-actions">
-                    <button onclick="deletePost('${doc.id}')">🗑 Supprimer</button>
-                  </div>
-                </div>` : ""}
-            </article>`;
-        });
-        listEl.innerHTML = html;
-      } catch (e) {
-        console.error("Erreur chargement posts:", e);
-        listEl.innerHTML = `
-          <div class="empty-state">
-            <div class="icon">⚠️</div>
-            <p>Impossible de charger les discussions.</p>
-            <p style="font-size:13px;margin-top:8px;color:#dc2626;">${escapeHtml(e.message)}</p>
-          </div>`;
+        $("welcomeMessage").textContent =
+          "Byenveni, " + profile.fullName + "!";
+
+        $("profileDetails").textContent =
+          "Non itilizatè: " + profile.username +
+          " | Peyi: " + profile.country +
+          " | Klas: " + profile.schoolClass;
+
+        $("registerCard").classList.add("hidden");
+        $("loginCard").classList.add("hidden");
+        $("profileCard").classList.remove("hidden");
+      } catch (error) {
+        console.error("Profile loading error:", error);
       }
-    }
+    });
 
-    auth.onAuthStateChanged(async user => {
-      currentUser = user;
-      const signupBtn = document.querySelector('button[onclick*="Inscription"]');
-      const loginBtn = document.querySelector('button[onclick*="Connexion"]');
-      const existingInfo = document.getElementById("userInfo");
-      if (existingInfo) existingInfo.remove();
-
-      const newPostBox = document.getElementById("newPostBox");
-      const loginNotice = document.getElementById("loginNotice");
-
-      if (user) {
-        if (signupBtn) signupBtn.style.display = "none";
-        if (loginBtn) loginBtn.style.display = "none";
-
-        const headerDiv = (loginBtn || signupBtn).parentElement;
-        const info = document.createElement("div");
-        info.id = "userInfo";
-        info.innerHTML = `
-          <button class="outline" onclick="openProfile()">Mon profil</button>
-          <button class="outline" onclick="logout()">Déconnexion</button>
-        `;
-        headerDiv.appendChild(info);
-
-        newPostBox.style.display = "block";
-        loginNotice.style.display = "none";
-
-        try {
-          const docSnap = await db.collection("users").doc(user.uid).get();
-          if (docSnap.exists) {
-            currentUserProfile = docSnap.data();
-            const p = currentUserProfile;
-            info.insertAdjacentHTML("afterbegin",
-              `<span style="margin-right:8px">👤 ${escapeHtml(p.nom)} <small style="color:#64748b">(${escapeHtml(p.classe)})</small></span>`
-            );
-          } else {
-            currentUserProfile = null;
-            openProfile();
-          }
-        } catch (err) {
-          console.error("Erreur chargement profil:", err);
-          openProfile();
-        }
-      } else {
-        if (signupBtn) signupBtn.style.display = "";
-        if (loginBtn) loginBtn.style.display = "";
-        currentUserProfile = null;
-        newPostBox.style.display = "none";
-        loginNotice.style.display = "block";
+    $("logoutButton").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        $("profileCard").classList.add("hidden");
+        $("registerCard").classList.remove("hidden");
+      } catch (error) {
+        console.error("Logout error:", error);
       }
-
-      loadPosts();
     });
-
-    function logout() {
-      auth.signOut();
-    }
-
-    document.getElementById("authModal").addEventListener("click", e => {
-      if (e.target.id === "authModal") closeAuth();
-    });
-    document.getElementById("profileModal").addEventListener("click", e => {
-      if (e.target.id === "profileModal") closeProfile();
-    });
-    document.getElementById("authPassword").addEventListener("keydown", e => {
-      if (e.key === "Enter") { e.preventDefault(); submitAuth(); }
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
